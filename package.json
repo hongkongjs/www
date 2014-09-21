@@ -1,0 +1,18 @@
+{
+  "author": "Kevin Bluer <kevin@bluer.com> (http://www.bluer.com)",
+  "name": "HongKongJS",
+  "description": "Baseline for a series of templates available via Hong Kong JS",
+  "version": "1.0.0",
+  "homepage": "hongkongjs.com",
+  "repository": {
+    "url": ""
+  },
+  "main": "app.js",
+  "engines": {
+    "node": "~0.10.x"
+  },
+  "dependencies": {
+    "express": "~3.5.1"
+  },
+  "devDependencies": {}
+}
