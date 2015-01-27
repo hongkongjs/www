@@ -1,0 +1,11 @@
+{
+  "name": "MEAN",
+  "version": "0.0.11",
+  "dependencies": {
+    "angular": "~1.2",
+    "angular-route": "~1.2",
+    "angular-resource": "~1.2",
+    "angular-mocks": "~1.2",
+    "angular-material": "~0.7.0"
+  }
+}
