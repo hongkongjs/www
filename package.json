@@ -1,5 +1,6 @@
 {
   "name": "HKJS",
+  "description": "The official Hong Kong JS website",
   "version": "0.0.11",
   "dependencies": {
     "express": "~4.8.8",
