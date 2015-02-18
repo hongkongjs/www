@@ -49,7 +49,7 @@ md-list .md-button {
 .menuItem {
   border: 1px solid #ddd;
   display: inline-block;
-  margin: 0px;
+  margin: 0;
   vertical-align: middle;
 }
 
