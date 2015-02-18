@@ -1,14 +1,12 @@
 <div data-ng-controller="SideNavController">
-  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-sm')">
-    <md-list>
-      <md-item ng-repeat="it in menuItems">
-        <md-item-content>
-          <md-button ng-click="selectItem(it)" ng-class="{'selected' : it === selected }">
-            <span class="{{it.classname}} menuItem"></span>
-            {{it.name}}
-          </md-button>
-        </md-item-content>
-      </md-item>
-    </md-list>
-  </md-sidenav>
+  <md-list>
+    <md-item ng-repeat="it in menuItems">
+      <md-item-content>
+        <md-button ng-click="selectItem(it)" ng-class="{'selected' : it === selected }">
+          <span class="{{it.classname}} menuItem"></span>
+          {{it.name}}
+        </md-button>
+      </md-item-content>
+    </md-item>
+  </md-list>
 </div>
