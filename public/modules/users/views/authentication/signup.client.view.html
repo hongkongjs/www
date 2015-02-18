@@ -1,54 +1,53 @@
 <section class="row" data-ng-controller="AuthenticationController">
-  <h3 class="col-md-12 text-center">Sign up using your social accounts</h3>
-  <div class="col-md-12 text-center">
-    <a href="/auth/facebook" class="undecorated-link">
+  <md-toolbar class="md-primary">
+    <h3 class="md-toolbar-tools">
+       Sign up using your social accounts
+    </h3>
+  </md-toolbar>
+
+  <md-content class="md-padding">
+    <a href="/auth/facebook">
       <img src="/modules/users/img/buttons/facebook.png">
     </a>
-    <a href="/auth/twitter" class="undecorated-link">
+    <a href="/auth/twitter">
       <img src="/modules/users/img/buttons/twitter.png">
     </a>
-    <a href="/auth/google" class="undecorated-link">
+    <a href="/auth/google">
       <img src="/modules/users/img/buttons/google.png">
     </a>
-    <a href="/auth/linkedin" class="undecorated-link">
+    <a href="/auth/linkedin">
       <img src="/modules/users/img/buttons/linkedin.png">
     </a>
-    <a href="/auth/github" class="undecorated-link">
+    <a href="/auth/github">
       <img src="/modules/users/img/buttons/github.png">
     </a>
-  </div>
-  <h3 class="col-md-12 text-center">Or with your email</h3>
-  <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
-    <form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
-      <fieldset>
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
-        </div>
-        <div class="form-group">
+  </md-content>
+
+  <md-toolbar class="md-primary">
+    <h3 class="md-toolbar-tools">
+       Or with your account
+    </h3>
+  </md-toolbar>
+
+  <md-content class="md-padding">
+    <form data-ng-submit="signup()" autocomplete="off">
+      <div layout layout-sm="column">
+        <md-input-container flex>
           <label for="username">Username</label>
           <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-        </div>
-        <div class="form-group">
+        </md-input-container>
+        <md-input-container flex>
           <label for="password">Password</label>
           <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-        </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
-          <a href="/#!/signin" class="show-signup">Sign in</a>
-        </div>
-        <div data-ng-show="error" class="text-center text-danger">
-          <strong data-ng-bind="error"></strong>
-        </div>
-      </fieldset>
+        </md-input-container>
+      </div>
+
+      <a href="/#!/signup"><md-button class="md-raised md-primary"> Sign up </md-button></a> &nbsp; or&nbsp;
+      <md-button class="md-raised"> Sign in </md-button>
+      <div data-ng-show="error" class="text-danger">
+        <strong data-ng-bind="error"></strong>
+      </div>
+      </div>
     </form>
-  </div>
+  </md-content>
 </section>
