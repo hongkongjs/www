@@ -1,8 +1,33 @@
 <div data-ng-controller="HeaderController">
   <md-toolbar layout="row">
-    <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
-      <span class="visuallyhidden">Menu</span>
-    </button>
-    <h1>Hong Kong JavaScript</h1>
+    <div class="md-toolbar-tools">
+      <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+        <span class="visuallyhidden">Menu</span>
+      </button>
+      <h1>Hong Kong JavaScript</h1>
+      <span flex></span>
+      <div data-ng-hide="authentication.user">
+        <md-button ui-route="/signup" ng-class="{active: $uiRoute}">
+          <a href="/#!/signup">Sign Up</a>
+        </md-button>
+        <md-button ui-route="/signin" ng-class="{active: $uiRoute}">
+          <a href="/#!/signin">Sign In</a>
+        </md-button>
+      </div>
+      <div class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+        <md-button>
+          <a href="/#!/settings/profile">Edit Profile</a>
+        </md-button>
+        <md-button>
+          <a href="/#!/settings/accounts">Manage Social Accounts</a>
+        </md-button>
+        <md-button data-ng-show="authentication.user.provider === 'local'">
+          <a href="/#!/settings/password">Change Password</a>
+        </md-button>
+        <md-button>
+          <a href="/auth/signout">Signout</a>
+        </md-button>
+      </div>
+    </div>
   </md-toolbar>
 </div>
