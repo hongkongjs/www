@@ -1,30 +1,30 @@
 'use strict';
 
-angular.module('core').controller('SideNavController', ['$scope', '$mdSidenav',
-  function($scope, $mdSidenav){
+angular.module('core').controller('SideNavController', ['$scope', '$mdSidenav', '$location',
+  function($scope, $mdSidenav, $location){
 
     $scope.selected      = null;
 
     $scope.menuItems = [
       {
         name: 'News',
-        url: '#!/news'
+        url: '/news'
       },
       {
         name: 'Share Stack',
-        url: '#!/stack'
+        url: '/stacks'
        },
       {
         name: 'Browse Tools',
-        url: '#!/tools'
+        url: '/tools'
       },
       {
         name: 'Settings',
-        url: '#!/settings'
+        url: '/settings'
       },
       {
         name: 'Help & Feedback',
-        url: '#!/feedback'
+        url: '/feedback'
       }
     ];
 
@@ -32,8 +32,8 @@ angular.module('core').controller('SideNavController', ['$scope', '$mdSidenav',
       $mdSidenav(menuId).toggle();
     };
 
-    $scope.selectItem = function (item) {
-      $scope.selected = angular.isNumber(item) ? $scope.menuItems[item] : item;
+    $scope.selectItem = function(path) {
+      $location.path(path);
       $scope.toggleSidenav('left');
     };
   }

@@ -2,9 +2,9 @@
   <md-list>
     <md-item ng-repeat="it in menuItems">
       <md-item-content>
-        <md-button ng-click="selectItem(it)" ng-class="{'selected' : it === selected }">
+        <md-button ng-click="selectItem(it.url)" ng-class="{'selected' : it === selected }">
           <span class="{{it.classname}} menuItem"></span>
-          <a ng-href={{it.url}}> {{it.name}} </a>
+           {{it.name}}
         </md-button>
       </md-item-content>
     </md-item>
