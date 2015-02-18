@@ -34,15 +34,15 @@
       <div layout layout-sm="column">
         <md-input-container flex>
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+          <input type="text" id="username" name="username" data-ng-model="credentials.username" placeholder="Username">
         </md-input-container>
         <md-input-container flex>
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+          <input type="password" id="password" name="password" data-ng-model="credentials.password" placeholder="Password">
         </md-input-container>
       </div>
 
-      <md-button class="md-raised md-primary"> Sign in </md-button>&nbsp; or&nbsp;
+      <md-button type="submit" class="md-raised md-primary"> Sign in </md-button>&nbsp; or&nbsp;
       <a href="/#!/signup"><md-button class="md-raised"> Sign up </md-button></a>
       <a href="/#!/password/forgot"><md-button>Forgot your password?</md-button></a>
         <div data-ng-show="error" class="text-danger">
