@@ -1,28 +1,49 @@
-// Invoke 'strict' JavaScript mode
 'use strict';
+/**
+ * Module dependencies.
+ */
+var init = require('./config/init')(),
+  config = require('./config/config'),
+  mongoose = require('mongoose'),
+  chalk = require('chalk');
 
-// Set the 'NODE_ENV' variable
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+/**
+ * Main application entry file.
+ * Please note that the order of loading is important.
+ */
 
-// Load the module dependencies
-var mongoose = require('./config/mongoose'),
-  express = require('./config/express'),
-  passport = require('./config/passport');
+// Bootstrap db connection
+var db = mongoose.connect(config.db.uri, config.db.options, function(err) {
+  if (err) {
+    console.error(chalk.red('Could not connect to MongoDB!'));
+    console.log(chalk.red(err));
+  }
+});
+mongoose.connection.on('error', function(err) {
+  console.error(chalk.red('MongoDB connection error: ' + err));
+  process.exit(-1);
+  }
+);
 
-// Create a new Mongoose connection instance
-var db = mongoose();
+// Init the express application
+var app = require('./config/express')(db);
 
-// Create a new Express application instance
-var app = express(db);
+// Bootstrap passport config
+require('./config/passport')();
 
-// Configure the Passport middleware
-var passport = passport();
+// Start the app by listening on <port>
+app.listen(config.port);
 
-// Use the Express application instance to listen to the '3000' port
-app.listen(3000);
+// Expose app
+exports = module.exports = app;
 
-// Log the server status to the console
-console.log('Server running at http://localhost:3000/');
-
-// Use the module.exports property to expose our Express application instance for external usage
-module.exports = app;
+// Logging initialization
+console.log('--');
+console.log(chalk.green(config.app.title + ' application started'));
+console.log(chalk.green('Environment:\t\t\t' + process.env.NODE_ENV));
+console.log(chalk.green('Port:\t\t\t\t' + config.port));
+console.log(chalk.green('Database:\t\t\t' + config.db.uri));
+if (process.env.NODE_ENV === 'secure') {
+  console.log(chalk.green('HTTPs:\t\t\t\ton'));
+}
+console.log('--');

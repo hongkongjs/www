@@ -1,0 +1,12 @@
+<div data-ng-controller="SideNavController">
+  <md-list>
+    <md-item ng-repeat="it in menuItems">
+      <md-item-content>
+        <md-button ng-click="selectItem(it.url)" ng-class="{'selected' : it === selected }">
+          <span class="{{it.classname}} menuItem"></span>
+           {{it.name}}
+        </md-button>
+      </md-item-content>
+    </md-item>
+  </md-list>
+</div>

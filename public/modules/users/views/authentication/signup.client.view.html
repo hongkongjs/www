@@ -1,0 +1,69 @@
+<section class="row" data-ng-controller="AuthenticationController">
+  <md-toolbar class="md-primary">
+    <h3 class="md-toolbar-tools">
+       Sign up using your social accounts
+    </h3>
+  </md-toolbar>
+
+  <md-content class="md-padding">
+    <a href="/auth/facebook">
+      <img src="/modules/users/img/buttons/facebook.png">
+    </a>
+    <a href="/auth/twitter">
+      <img src="/modules/users/img/buttons/twitter.png">
+    </a>
+    <a href="/auth/google">
+      <img src="/modules/users/img/buttons/google.png">
+    </a>
+    <a href="/auth/linkedin">
+      <img src="/modules/users/img/buttons/linkedin.png">
+    </a>
+    <a href="/auth/github">
+      <img src="/modules/users/img/buttons/github.png">
+    </a>
+  </md-content>
+
+  <md-toolbar class="md-primary">
+    <h3 class="md-toolbar-tools">
+       Or with your account
+    </h3>
+  </md-toolbar>
+
+  <md-content class="md-padding">
+    <form data-ng-submit="signup()" novalidate autocomplete="off">
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label for="firstName">First Name</label>
+          <input type="text" required id="firstName" name="firstName" data-ng-model="credentials.firstName" placeholder="First Name">
+        </md-input-container>
+        <md-input-container flex>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" data-ng-model="credentials.lastName" placeholder="Last Name">
+        </md-input-container>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" data-ng-model="credentials.email" placeholder="Email">
+        </md-input-container>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" data-ng-model="credentials.username" placeholder="Username">
+        </md-input-container>
+        <md-input-container flex>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" data-ng-model="credentials.password" placeholder="Password">
+        </md-input-container>
+      </div>
+
+      <md-button type="submit" class="md-raised md-primary"> Sign up </md-button> &nbsp; or&nbsp;
+      <a href="/#!/signin"><md-button class="md-raised"> Sign in </md-button></a>
+      <div data-ng-show="error" class="text-danger">
+        <strong data-ng-bind="error"></strong>
+      </div>
+      </div>
+    </form>
+  </md-content>
+</section>
