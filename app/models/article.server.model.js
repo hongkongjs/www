@@ -1,11 +1,14 @@
-// Invoke 'strict' JavaScript mode
 'use strict';
 
-// Load the module dependencies
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-// Define a new 'ArticleSchema'
+/**
+ * Article Schema
+ */
 var ArticleSchema = new Schema({
   created: {
     type: Date,
@@ -22,11 +25,10 @@ var ArticleSchema = new Schema({
     default: '',
     trim: true
   },
-  creator: {
+  user: {
     type: Schema.ObjectId,
     ref: 'User'
   }
 });
 
-// Create the 'Article' model out of the 'ArticleSchema'
 mongoose.model('Article', ArticleSchema);

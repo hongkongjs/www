@@ -1,16 +1,15 @@
-// Invoke 'strict' JavaScript mode
 'use strict';
 
-// Load the module dependencies
+/**
+ * Module dependencies.
+ */
 var passport = require('passport'),
-  url = require('url'),
   TwitterStrategy = require('passport-twitter').Strategy,
   config = require('../config'),
   users = require('../../app/controllers/users.server.controller');
 
-// Create the Twitter strategy configuration method
 module.exports = function() {
-  // Use the Passport's Twitter strategy
+  // Use twitter strategy
   passport.use(new TwitterStrategy({
       consumerKey: config.twitter.clientID,
       consumerSecret: config.twitter.clientSecret,
@@ -18,17 +17,24 @@ module.exports = function() {
       passReqToCallback: true
     },
     function(req, token, tokenSecret, profile, done) {
-      // Set the user's provider data and include tokens
+      // Set the provider data and include tokens
       var providerData = profile._json;
       providerData.token = token;
       providerData.tokenSecret = tokenSecret;
 
       // Create the user OAuth profile
+      var displayName = profile.displayName.trim();
+      var iSpace = displayName.indexOf(' '); // index of the whitespace following the firstName
+      var firstName =  iSpace !== -1 ? displayName.substring(0, iSpace) : displayName;
+      var lastName = iSpace !== -1 ? displayName.substring(iSpace + 1) : '';
+
       var providerUserProfile = {
-        fullName: profile.displayName,
+        firstName: firstName,
+        lastName: lastName,
+        displayName: displayName,
         username: profile.username,
         provider: 'twitter',
-        providerId: profile.id,
+        providerIdentifierField: 'id_str',
         providerData: providerData
       };
 

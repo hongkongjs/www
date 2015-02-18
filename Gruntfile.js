@@ -1,140 +1,183 @@
-// Invoke 'strict' JavaScript mode
 'use strict';
 
-// Define the Grunt configuration method
 module.exports = function(grunt) {
-  // Initialize Grunt configuraiton
+  // Unified Watch Object
+  var watchFiles = {
+    serverViews: ['app/views/**/*.*'],
+    serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js', '!app/tests/'],
+    clientViews: ['public/modules/**/views/**/*.html'],
+    clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
+    clientCSS: ['public/modules/**/*.css'],
+    mochaTests: ['app/tests/**/*.js']
+  };
+
+  // Project Configuration
   grunt.initConfig({
-    // Configure the grunt-env task
-    env: {
-      test: {
-        NODE_ENV: 'test'
+    pkg: grunt.file.readJSON('package.json'),
+    watch: {
+      serverViews: {
+        files: watchFiles.serverViews,
+        options: {
+          livereload: true
+        }
       },
-      dev: {
-        NODE_ENV: 'development'
+      serverJS: {
+        files: watchFiles.serverJS,
+        tasks: ['jshint'],
+        options: {
+          livereload: true
+        }
+      },
+      clientViews: {
+        files: watchFiles.clientViews,
+        options: {
+          livereload: true
+        }
+      },
+      clientJS: {
+        files: watchFiles.clientJS,
+        tasks: ['jshint'],
+        options: {
+          livereload: true
+        }
+      },
+      clientCSS: {
+        files: watchFiles.clientCSS,
+        tasks: ['csslint'],
+        options: {
+          livereload: true
+        }
+      },
+      mochaTests: {
+        files: watchFiles.mochaTests,
+        tasks: ['test:server'],
       }
     },
-    // Configure the grunt-nodemon task
+    jshint: {
+      all: {
+        src: watchFiles.clientJS.concat(watchFiles.serverJS),
+        options: {
+          jshintrc: true
+        }
+      }
+    },
+    csslint: {
+      options: {
+        csslintrc: '.csslintrc'
+      },
+      all: {
+        src: watchFiles.clientCSS
+      }
+    },
+    uglify: {
+      production: {
+        options: {
+          mangle: false
+        },
+        files: {
+          'public/dist/application.min.js': 'public/dist/application.js'
+        }
+      }
+    },
+    cssmin: {
+      combine: {
+        files: {
+          'public/dist/application.min.css': '<%= applicationCSSFiles %>'
+        }
+      }
+    },
     nodemon: {
       dev: {
         script: 'server.js',
         options: {
-          ext: 'js,html',
-          watch: ['server.js', 'config/**/*.js', 'app/**/*.js']
-        }
-      },
-      debug: {
-        script: 'server.js',
-        options: {
           nodeArgs: ['--debug'],
           ext: 'js,html',
-          watch: ['server.js', 'config/**/*.js', 'app/**/*.js']
+          watch: watchFiles.serverViews.concat(watchFiles.serverJS)
         }
       }
     },
-    // Configure the grunt-mocha-test task
-    mochaTest: {
-      src: 'app/tests/**/*.js',
-      options: {
-        reporter: 'spec'
+    'node-inspector': {
+      custom: {
+        options: {
+          'web-port': 1337,
+          'web-host': 'localhost',
+          'debug-port': 5858,
+          'save-live-edit': true,
+          'no-preload': true,
+          'stack-trace-limit': 50,
+          'hidden': []
+        }
       }
     },
-    // Configure the grunt-karma task
+    ngAnnotate: {
+      production: {
+        files: {
+          'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
+        }
+      }
+    },
+    concurrent: {
+      default: ['nodemon', 'watch'],
+      debug: ['nodemon', 'watch', 'node-inspector'],
+      options: {
+        logConcurrentOutput: true,
+        limit: 10
+      }
+    },
+    env: {
+      test: {
+        NODE_ENV: 'test'
+      },
+      secure: {
+        NODE_ENV: 'secure'
+      }
+    },
+    mochaTest: {
+      src: watchFiles.mochaTests,
+      options: {
+        reporter: 'spec',
+        require: 'server.js'
+      }
+    },
     karma: {
       unit: {
         configFile: 'karma.conf.js'
       }
-    },
-    // Configure the grunt-protractor-runner task
-    protractor: {
-      e2e: {
-        options: {
-          configFile: 'protractor.conf.js'
-        }
-      }
-    },
-    // Configure the grunt-contrib-jshint task
-    jshint: {
-      all: {
-        src: ['server.js', 'config/**/*.js', 'app/**/*.js', 'public/js/*.js', 'public/modules/**/*.js'],
-        options: {
-          node: true,
-          predef: [
-            "define",
-            "require",
-            "exports",
-            "module",
-            "describe",
-            "before",
-            "beforeEach",
-            "after",
-            "afterEach",
-            "it",
-            "inject",
-            "expect"
-          ]
-        }
-      }
-    },
-    // Configure the grunt-contrib-csslint task
-    csslint: {
-      all: {
-        src: 'public/modules/**/*.css'
-      }
-    },
-    // Configure the grunt-contrib-watch task
-    watch: {
-      js: {
-        files: ['server.js', 'config/**/*.js', 'app/**/*.js', 'public/js/*.js', 'public/modules/**/*.js'],
-        tasks: ['jshint']
-      },
-      css: {
-        files: 'public/modules/**/*.css',
-        tasks: ['csslint']
-      }
-    },
-    // Configure the grunt-concurrent task
-    concurrent: {
-      dev: {
-        tasks: ['nodemon', 'watch'],
-        options: {
-          logConcurrentOutput: true
-        }
-      },
-      debug: {
-        tasks: ['nodemon:debug', 'watch', 'node-inspector'],
-        options: {
-          logConcurrentOutput: true
-        }
-      }
-    },
-    // Configure the grunt-node-inspector task
-    'node-inspector': {
-      debug: {}
     }
   });
 
-  // Load the external Grunt tasks
-  grunt.loadNpmTasks('grunt-env');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-csslint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-node-inspector');
+  // Load NPM tasks
+  require('load-grunt-tasks')(grunt);
 
-  // Create the 'default' Grunt task
-  grunt.registerTask('default', ['env:dev', 'lint', 'concurrent:dev']);
+  // Making grunt default to force in order not to break the project.
+  grunt.option('force', true);
 
-  // Create the 'debug' Grunt task
-  grunt.registerTask('debug', ['env:dev', 'lint', 'concurrent:debug']);
+  // A Task for loading the configuration object
+  grunt.task.registerTask('loadConfig', 'Task that loads the config into a grunt option.', function() {
+    var init = require('./config/init')();
+    var config = require('./config/config');
 
-  // Create the 'test' Grunt task
-  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma', 'protractor']);
+    grunt.config.set('applicationJavaScriptFiles', config.assets.js);
+    grunt.config.set('applicationCSSFiles', config.assets.css);
+  });
 
-  // Create the 'lint' Grunt task
+  // Default task(s).
+  grunt.registerTask('default', ['lint', 'concurrent:default']);
+
+  // Debug task.
+  grunt.registerTask('debug', ['lint', 'concurrent:debug']);
+
+  // Secure task(s).
+  grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
+
+  // Lint task(s).
   grunt.registerTask('lint', ['jshint', 'csslint']);
+
+  // Build task(s).
+  grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+
+  // Test task.
+  grunt.registerTask('test', ['test:server', 'test:client']);
+  grunt.registerTask('test:server', ['env:test', 'mochaTest']);
+  grunt.registerTask('test:client', ['env:test', 'karma:unit']);
 };

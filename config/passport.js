@@ -1,32 +1,33 @@
-// Invoke 'strict' JavaScript mode
 'use strict';
 
-// Load the module dependencies
+/**
+ * Module dependencies.
+ */
 var passport = require('passport'),
-  mongoose = require('mongoose');
+  User = require('mongoose').model('User'),
+  path = require('path'),
+  config = require('./config');
 
-// Define the Passport configuration method
+/**
+ * Module init function.
+ */
 module.exports = function() {
-  // Load the 'User' model
-  var User = mongoose.model('User');
-
-  // Use Passport's 'serializeUser' method to serialize the user id
+  // Serialize sessions
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
 
-  // Use Passport's 'deserializeUser' method to load the user document
+  // Deserialize sessions
   passport.deserializeUser(function(id, done) {
     User.findOne({
       _id: id
-    }, '-password -salt', function(err, user) {
+    }, '-salt -password', function(err, user) {
       done(err, user);
     });
   });
 
-  // Load Passport's strategies configuration files
-  require('./strategies/local.js')();
-  require('./strategies/twitter.js')();
-  require('./strategies/facebook.js')();
-  require('./strategies/google.js')();
+  // Initialize strategies
+  config.getGlobbedFiles('./config/strategies/**/*.js').forEach(function(strategy) {
+    require(path.resolve(strategy))();
+  });
 };

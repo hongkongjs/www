@@ -1,23 +1,20 @@
-// Invoke 'strict' JavaScript mode
 'use strict';
 
-// Set the main application name
-var mainApplicationModuleName = 'mean';
+//Start by defining the main module and adding the module dependencies
+angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
-// Create the main application
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'users', 'example', 'articles', 'chat']);
-
-// Configure the hashbang URLs using the $locationProvider services
-mainApplicationModule.config(['$locationProvider',
+// Setting HTML5 Location Mode
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
   function($locationProvider) {
     $locationProvider.hashPrefix('!');
   }
 ]);
 
-// Fix Facebook's OAuth bug
-if (window.location.hash === '#_=_') window.location.hash = '#!';
-
-// Manually bootstrap the AngularJS application
+//Then define the init function for starting up the application
 angular.element(document).ready(function() {
-  angular.bootstrap(document, [mainApplicationModuleName]);
+  //Fixing facebook bug with redirect
+  if (window.location.hash === '#_=_') window.location.hash = '#!';
+
+  //Then init the app
+  angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
 });
