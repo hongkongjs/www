@@ -44,15 +44,29 @@
   <![endif]-->
 </head>
 
-<body class="ng-cloak">
+<body layout="column" class="ng-cloak">
 
-  <div layout="column" layout-fill>
-    <md-toolbar>
-      <header data-ng-include="'/modules/core/views/header.client.view.html'" class="md-toolbar-tools"></header>
-    </md-toolbar>
-    <md-content class="md-padding">
-      {% block content %}{% endblock %}
-    </md-content>
+  <header data-ng-include="'/modules/core/views/header.client.view.html'"></header>
+
+  <!--
+       Use `flex` [below] to have the side bar and content area
+       fill the available vertical display area
+   -->
+
+  <div layout="row" flex>
+
+    <div data-ng-include="'/modules/core/views/sidenav.client.view.html'"></div>
+
+    <!--
+        Use `flex` [below] to have the content area
+        fill the available horizontal display area on the right side
+    -->
+
+    <div layout="column" flex class="content-wrapper" class="content">
+      <md-content layout="column" flex class="md-padding">
+        {% block content %}{% endblock %}
+      </md-content>
+    </div>
   </div>
 
   <!--Embedding The User Object-->
