@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -32,7 +32,7 @@
   <meta name="twitter:image" content="/img/brand/logo.png">
 
   <!-- Fav Icon -->
-  <link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="/modules/core/img/brand/favicon.png" rel="shortcut icon" type="image/x-icon">
 
   <!--Application CSS Files-->
   {% for cssFile in cssFiles %}
@@ -45,12 +45,15 @@
 </head>
 
 <body class="ng-cloak">
-  <header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-  <section class="content">
-    <section class="container">
+
+  <div layout="column" layout-fill>
+    <md-toolbar>
+      <header data-ng-include="'/modules/core/views/header.client.view.html'" class="md-toolbar-tools"></header>
+    </md-toolbar>
+    <md-content class="md-padding">
       {% block content %}{% endblock %}
-    </section>
-  </section>
+    </md-content>
+  </div>
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
