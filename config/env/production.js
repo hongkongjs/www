@@ -1,6 +1,8 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
+console.log('production');
+
 // Set the 'production' environment configuration object
 module.exports = {
   db: 'mongodb://' + process.env.MONGODB_URI,
