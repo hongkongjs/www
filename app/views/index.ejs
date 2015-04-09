@@ -15,8 +15,16 @@
 
 </head>
 <body>
-  <!-- Render AngularJS views  -->
-  <section ng-view></section>
+
+  <div layout="row" layout-wrap>
+    <div flex="25">
+    </div>
+    <div flex="50">
+      <section ng-view></section>
+    </div>
+    <div flex="25">
+    </div>
+  </div>
 
   <!-- Render the user object -->
   <script type="text/javascript">
@@ -55,10 +63,9 @@
   <!-- Bootstrap AngularJS application -->
   <script type="text/javascript" src="/application.js"></script>
 
-    <!-- Angular Material Dependencies -->
+  <!-- Angular Material Dependencies -->
   <script src="/lib/angular-animate/angular-animate.min.js"></script>
   <script src="/lib/angular-aria/angular-aria.min.js"></script>
-
 
   <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
   <script src="/lib/angular-material/angular-material.min.js"></script>
