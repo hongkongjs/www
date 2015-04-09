@@ -13,9 +13,9 @@ The source for Hong Kong JS public website. Built on MEAN and using [Material De
 
 Once running locally, you can open the site at the following: [http://localhost:3000/#!/](http://localhost:3000/#!/)
 
-## Deployment
+## Hosting
 
-	
+Currently on the [Heroku](http://heroku.com/) Celadon Cedar-14 stack.
 
 ## Frameworks
 

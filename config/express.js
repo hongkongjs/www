@@ -13,7 +13,8 @@ var config = require('./config'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
   flash = require('connect-flash'),
-  passport = require('passport');
+  passport = require('passport'),
+  expressLayouts = require('express-ejs-layouts');
 
 // Define the Express configuration method
 module.exports = function(db) {
@@ -39,6 +40,7 @@ module.exports = function(db) {
   }));
   app.use(bodyParser.json());
   app.use(methodOverride());
+  app.use(expressLayouts);
 
   // Configure the MongoDB session storage
   var mongoStore = new MongoStore({
@@ -56,6 +58,7 @@ module.exports = function(db) {
   // Set the application view engine and 'views' folder
   app.set('views', './app/views');
   app.set('view engine', 'ejs');
+  app.set('layout', 'layout');
 
   // Configure the flash messages middleware
   app.use(flash());

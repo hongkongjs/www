@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" lang="en" class="no-js">
+<head>
+  <!-- Use the 'title' property to render a page title  -->
+  <title><%= title %></title>
+
+  <!-- Meta Data -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <!-- Angulars Material CSS  -->
+  <link rel="stylesheet" href="/lib/angular-material/angular-material.min.css">
+
+</head>
+<body>
+
+  <%- body %>
+
+  <!-- Load the Socket.io client -->
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+  <!-- Load local libraries -->
+  <script type="text/javascript" src="/lib/angular/angular.js"></script>
+  <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+
+  <!-- Load the articles module -->
+  <script type="text/javascript" src="/articles/articles.client.module.js"></script>
+  <script type="text/javascript" src="/articles/controllers/articles.client.controller.js"></script>
+  <script type="text/javascript" src="/articles/services/articles.client.service.js"></script>
+  <script type="text/javascript" src="/articles/config/articles.client.routes.js"></script>
+
+  <!-- Load the example module -->
+  <script type="text/javascript" src="/example/example.client.module.js"></script>
+  <script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+  <script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+  <!-- Load the users module -->
+  <script type="text/javascript" src="/users/users.client.module.js"></script>
+  <script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
+
+  <!-- Load the chat module -->
+  <script type="text/javascript" src="/chat/chat.client.module.js"></script>
+  <script type="text/javascript" src="/chat/services/socket.client.service.js"></script>
+  <script type="text/javascript" src="/chat/controllers/chat.client.controller.js"></script>
+  <script type="text/javascript" src="/chat/config/chat.client.routes.js"></script>
+
+  <!-- Bootstrap AngularJS application -->
+  <script type="text/javascript" src="/application.js"></script>
+
+  <!-- Angular Material Dependencies -->
+  <script src="/lib/angular-animate/angular-animate.min.js"></script>
+  <script src="/lib/angular-aria/angular-aria.min.js"></script>
+
+  <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
+  <script src="/lib/angular-material/angular-material.min.js"></script>
+
+
+</body>
+</html>
