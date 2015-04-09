@@ -4,18 +4,30 @@ The source for Hong Kong JS public website. Built on MEAN and using [Material De
 
 ## Installation
 
-  bower install
-  npm install
+	bower install
+	npm install
 
 ## Running
 
-  grunt
+	grunt
 
 Once running locally, you can open the site at the following: [http://localhost:3000/#!/](http://localhost:3000/#!/)
 
+## Deployment
+
+	
+
 ## Frameworks
 
-- MEAN
+MEAN, therefore the following...
+
+- MongoDB
+- ExpressJS
+- AngularJS
+- NodeJS
+
+Additional libraries...
+
 - Material (https://material.angularjs.org)
 
 ## Getting Involved
