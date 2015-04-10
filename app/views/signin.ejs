@@ -10,15 +10,18 @@
   <!-- Render the signin form  -->
   <form action="/signin" method="post">
     <div>
-      <label>Username:</label>
-      <input type="text" name="username" />
+      <md-input-container flex>
+        <label>Username</label>
+        <input placeholder="Username" name="username" />
+      </md-input-container>
+      <md-input-container flex>
+        <label>Password</label>
+        <input placeholder="Password" name="password" type="password" />
+      </md-input-container>
     </div>
     <div>
-      <label>Password :</label>
-      <input type="password" name="password" />
-    </div>
-    <div>
-      <input type="submit" value="Sign In" />
+      <!-- <input  value="Sign In" /> -->
+      <md-button class="md-raised md-primary" type="submit">Sign In</md-button>
     </div>
   </form>
 
