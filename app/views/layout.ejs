@@ -16,7 +16,17 @@
 </head>
 <body>
 
-  <%- body %>
+  <div layout="row" layout-wrap>
+    <div flex="25">
+    </div>
+    <div flex="50">
+
+      <%- body %>
+
+    </div>
+    <div flex="25">
+    </div>
+  </div>
 
   <!-- Load the Socket.io client -->
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>

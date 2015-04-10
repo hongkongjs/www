@@ -1,35 +1,28 @@
-<div layout="row" layout-wrap>
-  <div flex="25">
-  </div>
-  <div flex="50">
 
-    <h1>Signup</h1>
 
-    <!-- Display flash messages  -->
-    <% for(var i in messages) { %>
-       <div class="flash"><%= messages[i] %></div>
-    <% } %>
+  <h1>Signup</h1>
 
-    <!-- Render the signin form  -->
-    <form action="/signin" method="post">
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username" />
-      </div>
-      <div>
-        <label>Password :</label>
-        <input type="password" name="password" />
-      </div>
-      <div>
-        <input type="submit" value="Sign In" />
-      </div>
-    </form>
+  <!-- Display flash messages  -->
+  <% for(var i in messages) { %>
+     <div class="flash"><%= messages[i] %></div>
+  <% } %>
 
-    <!-- Render the OAuth authentication links  -->
-    <!-- <a href="/oauth/facebook">Sign in with Facebook</a>
-    <a href="/oauth/twitter">Sign in with Twitter</a>
-    <a href="/oauth/google">Sign in with Google</a> -->
-  </div>
-  <div flex="25">
-  </div>
-</div>
+  <!-- Render the signin form  -->
+  <form action="/signin" method="post">
+    <div>
+      <label>Username:</label>
+      <input type="text" name="username" />
+    </div>
+    <div>
+      <label>Password :</label>
+      <input type="password" name="password" />
+    </div>
+    <div>
+      <input type="submit" value="Sign In" />
+    </div>
+  </form>
+
+  <!-- Render the OAuth authentication links  -->
+  <!-- <a href="/oauth/facebook">Sign in with Facebook</a>
+  <a href="/oauth/twitter">Sign in with Twitter</a>
+  <a href="/oauth/google">Sign in with Google</a> -->
