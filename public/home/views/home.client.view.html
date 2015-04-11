@@ -10,9 +10,9 @@
     </h2>
 
     <md-content>
-      <md-card ng-repeat="article in articles">
+      <md-card ng-repeat="article in articles | limitTo:3">
         <md-card-content>
-          <h2 class="md-title">{{article.title}}</h2>
+        <h2 class="md-title">{{article.title}} <small>by {{article.creator.firstName}} {{article.creator.lastName}}</small></h2>
           <p>
             {{article.content}}
           </p>
