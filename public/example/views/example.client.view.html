@@ -3,9 +3,9 @@
   <!-- If the user is not authenticated show the authentication link -->
   <div data-ng-show="!authentication.user">
     <h1>Welcome to Hong Kong JS</h1>
-    <h3>Welcome to Hong Kong JavaScript and Node.js! Join us to share ideas, discuss trends, and assess the future of the ever ubiquitous language. Upcoming topics include Introduction to Node.js, Meteor, Client-Side Frameworks, and ECMAScript 6.</h3>
-    <a href="/signup">Signup</a>
-    <a href="/signin">Signin</a>
+    <p>Join us to share ideas, discuss trends, and assess the future of the ever ubiquitous language. And click <a href="http://www.meetup.com/hongkongjs/">here</a> for more details on our upcoming events.</p>
+    <md-button class="md-raised md-primary" href="/signup">Sign Up</md-button>
+    <md-button class="md-raised" href="/signin">Sign In</md-button>
   </div>
   <!-- Otherwise, show the user details and application links -->
   <div data-ng-show="authentication.user">
