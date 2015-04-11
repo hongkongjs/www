@@ -4,7 +4,21 @@
   <div data-ng-show="!authentication.user">
     <h1>Welcome to Hong Kong JS</h1>
     <p>Join us to share ideas, discuss trends, and assess the future of the ever ubiquitous language. And click <a href="http://www.meetup.com/hongkongjs/">here</a> for more details on our upcoming events.</p>
+    <md-button class="md-raised md-primary" href="/signup">Sign Up</md-button>
+    <md-button class="md-raised" href="/signin">Sign In</md-button>
+  </div>
+  <!-- Otherwise, show the user details and application links -->
+  <div data-ng-show="authentication.user">
+    <h1>Hello <span data-ng-bind="authentication.user.fullName"></span></h1>
+    <a href="/signout">Signout</a>
+    <ul>
+      <li><a href="/#!/chat">Chat</a></li>
+      <li><a href="/#!/articles">List Articles</a></li>
+      <li><a href="/#!/articles/create">Create Article</a></li>
+    </ul>
+  </div>
 
+  <div>
     <h2>
       <span>Latest Community Notes</span>
     </h2>
@@ -19,20 +33,5 @@
         </md-card-content>
       </md-card>
     </md-content>
-
-    <br>
-
-    <md-button class="md-raised md-primary" href="/signup">Sign Up</md-button>
-    <md-button class="md-raised" href="/signin">Sign In</md-button>
-  </div>
-  <!-- Otherwise, show the user details and application links -->
-  <div data-ng-show="authentication.user">
-    <h1>Hello <span data-ng-bind="authentication.user.fullName"></span></h1>
-    <a href="/signout">Signout</a>
-    <ul>
-      <li><a href="/#!/chat">Chat</a></li>
-      <li><a href="/#!/articles">List Articles</a></li>
-      <li><a href="/#!/articles/create">Create Article</a></li>
-    </ul>
   </div>
 </section>
