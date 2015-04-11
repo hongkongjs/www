@@ -1,9 +1,27 @@
 <!-- The home view -->
-<section ng-controller="HomeController">
+<section ng-controller="HomeController" data-ng-init="articles()">
   <!-- If the user is not authenticated show the authentication link -->
   <div data-ng-show="!authentication.user">
     <h1>Welcome to Hong Kong JS</h1>
     <p>Join us to share ideas, discuss trends, and assess the future of the ever ubiquitous language. And click <a href="http://www.meetup.com/hongkongjs/">here</a> for more details on our upcoming events.</p>
+
+    <h2>
+      <span>Latest Community Notes</span>
+    </h2>
+
+    <md-content>
+      <md-card ng-repeat="article in articles">
+        <md-card-content>
+          <h2 class="md-title">{{article.title}}</h2>
+          <p>
+            {{article.content}}
+          </p>
+        </md-card-content>
+      </md-card>
+    </md-content>
+
+    <br>
+
     <md-button class="md-raised md-primary" href="/signup">Sign Up</md-button>
     <md-button class="md-raised" href="/signin">Sign In</md-button>
   </div>
