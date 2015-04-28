@@ -1,0 +1,26 @@
+<!-- The edit job view -->
+<section data-ng-controller="JobsController" data-ng-init="findOne()">
+  <h1>Edit Job</h1>
+  <!-- The edited job form -->
+  <form data-ng-submit="update()" novalidate>
+    <div>
+      <label for="title">Title</label>
+      <div>
+        <input type="text" data-ng-model="job.title" id="title" placeholder="Title" required>
+      </div>
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <div>
+        <textarea data-ng-model="job.description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
+      </div>
+    </div>
+    <div>
+      <input type="submit" value="Update">
+    </div>
+    <!-- The error message element -->
+    <div data-ng-show="error">
+      <strong data-ng-bind="error"></strong>
+    </div>
+  </form>
+</section>

@@ -17,7 +17,7 @@ var JobSchema = new Schema({
     trim: true,
     required: 'Title cannot be blank'
   },
-  detail: {
+  description: {
     type: String,
     default: '',
     trim: true

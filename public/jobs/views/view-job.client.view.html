@@ -1,0 +1,20 @@
+<!-- The job view -->
+<section data-ng-controller="JobsController" data-ng-init="findOne()">
+    <md-card>
+      <md-card-content>
+        <h1 data-ng-bind="job.title"></h1>
+        <!-- Show the editing buttons to the job creator -->
+        <div data-ng-show="authentication.user._id == job.creator._id">
+            <a href="/#!/jobs/{{job._id}}/edit">edit</a>
+            <a href="#" data-ng-click="delete();">delete</a>
+        </div>
+        <small>
+            <em>Posted on</em>
+            <em data-ng-bind="job.created | date:'mediumDate'"></em>
+            <em>by</em>
+            <em data-ng-bind="job.creator.fullName"></em>
+        </small>
+        <p data-ng-bind="job.description"></p>
+      </md-card-content>
+    </md-card>
+</section>

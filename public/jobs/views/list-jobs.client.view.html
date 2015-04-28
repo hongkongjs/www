@@ -1,0 +1,22 @@
+<!-- The list jobs view -->
+<section data-ng-controller="JobsController" data-ng-init="find()">
+  <h1>Jobs</h1>
+
+  <md-card data-ng-repeat="job in jobs">
+    <md-card-content>
+
+      <a data-ng-href="#!/jobs/{{job._id}}" data-ng-bind="job.title"></a>
+      <br>
+      <small data-ng-bind="job.created | date:'medium'"></small>
+      <small>/</small>
+      <small data-ng-bind="job.creator.fullName"></small>
+      <p data-ng-bind="job.description"></p>
+
+    </md-card-content>
+  </md-card>
+
+  <!-- If there are no jobs in the list, suggest the user's create a new job -->
+  <div data-ng-hide="!jobs || jobs.length">
+    No jobs yet!
+  </div>
+</section>
