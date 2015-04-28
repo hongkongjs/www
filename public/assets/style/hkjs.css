@@ -7,3 +7,16 @@ body p a {
 	font-weight: bold;
 	color: #3F51B5;
 }
+
+md-list .md-button {
+  color: inherit;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+}
+
+#content  {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 5px;
+}
