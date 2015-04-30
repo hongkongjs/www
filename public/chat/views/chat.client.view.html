@@ -1,25 +1,57 @@
 <!-- The chat view -->
-<section data-ng-controller="ChatController">
-	<!-- List all messages -->
-    <div data-ng-repeat="message in messages" data-ng-switch="message.type">
-    	<!-- Make status messages bolder -->
-        <strong data-ng-switch-when='status'>
-            <span data-ng-bind="message.created | date:'mediumTime'"></span>
-            <span data-ng-bind="message.username"></span>
-            <span>is</span>
-            <span data-ng-bind="message.text"></span>
-        </strong>
-        <!-- Render regular messages -->
-        <span data-ng-switch-default>
-            <span data-ng-bind="message.created | date:'mediumTime'"></span>
-            <span data-ng-bind="message.username"></span>
-            <span>:</span>
-            <span data-ng-bind="message.text"></span>
-        </span>
-    </div>
-    <!-- The message form -->
+<section data-ng-controller="ChatController">   
+
+    <h2 class="md-display-1">Chat</h2>
+
     <form ng-submit="sendMessage();">
-        <input type="text" data-ng-model="messageText">
-        <input type="submit">
+        <md-content>     
+            <md-input-container flex>
+              <label>Type here and hit enter to send your message</label>
+              <input type="text" data-ng-model="messageText">
+            </md-input-container>
+        </md-content>
     </form>
+
+    <md-content>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="message in messages">
+            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+            <div class="md-list-item-text">
+              <h4 style="margin: 4px;">At <span data-ng-bind="message.created | date:'mediumTime'"></span> <span data-ng-bind="message.username"></span> said:</h4>
+              <p data-ng-bind="message.text" style="line-height: 0.8em; margin: 4px;"></p>
+            </div>
+          </md-list-item>
+      </md-list>
+    </md-content>
+
+    <!--
+    <md-content>
+        <section>
+          <md-list layout-padding data-ng-repeat="message in messages" data-ng-switch="message.type">
+            <strong data-ng-switch-when='status'>
+                <md-list-item class="md-3-line">
+                    <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                      <h3 data-ng-bind="message.created | date:'mediumTime'"></h3>
+                      <h4 data-ng-bind="message.username"></h4>
+                      <p data-ng-bind="message.text">
+                      </p>
+                    </div>
+                </md-list-item>
+            </strong>
+            <span data-ng-switch-default>
+                <md-list-item class="md-3-line">
+                    <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                      <h3 data-ng-bind="message.created | date:'mediumTime'"></h3>
+                      <h4 data-ng-bind="message.username"></h4>
+                      <p data-ng-bind="message.text">
+                      </p>
+                    </div>
+                </md-list-item>
+            </span>
+          </md-list>
+        </section>
+    </md-content> -->
+
 </section>
