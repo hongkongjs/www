@@ -32,6 +32,12 @@ html, body {
   padding: 0px;
 }
 
+.articleTitle {
+	font-size: 2em;
+	text-decoration: none;
+	color: #3F51B5;
+}
+
 /* Toolbar area */
 
 .menu {

@@ -5,7 +5,7 @@
   <md-card data-ng-repeat="article in articles">
     <md-card-content>
 
-      <a data-ng-href="#!/articles/{{article._id}}" data-ng-bind="article.title"></a>
+      <a data-ng-href="#!/articles/{{article._id}}" data-ng-bind="article.title" class="articleTitle"></a>
       <br>
       <small data-ng-bind="article.created | date:'medium'"></small>
       <small>/</small>

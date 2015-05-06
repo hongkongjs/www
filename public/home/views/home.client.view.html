@@ -26,10 +26,12 @@
     <md-content>
       <md-card ng-repeat="article in articles | limitTo:3">
         <md-card-content>
-        <h2 class="md-title">{{article.title}} <small>by {{article.creator.firstName}} {{article.creator.lastName}}</small></h2>
-          <p>
-            {{article.content}}
-          </p>
+          <a data-ng-href="#!/articles/{{article._id}}" data-ng-bind="article.title" class="articleTitle"></a>
+          <br>
+          <small data-ng-bind="article.created | date:'medium'"></small>
+          <small>by</small>
+          <small data-ng-bind="article.creator.fullName"></small>
+          <p data-ng-bind="article.content"></p>
         </md-card-content>
       </md-card>
     </md-content>
